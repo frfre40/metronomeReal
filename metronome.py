@@ -16,13 +16,15 @@ longueur = int(input("Nombre de temps par mesure: "))
 
 accents = fM.accentDeBase(longueur)                                      #Initialisation de la liste de base à 1 accent
 deltaT = fM.temps(tempo, subdivision)
-accents = fM.patternAccent(longueur)                                             #Modification de la liste de base vers une liste a1 plusieurs accents
-mesures = 20
+accents = fM.patternAccent(longueur)                                     #Modification de la liste de base vers une liste a1 plusieurs accents
+mesures = 2
 i = 0
 
 print(accents)
-stop = 0
-while i < mesures:                                                       #loop sur le nombre de mesure
+
+
+while i < 5:                                                       #loop sur le nombre de mesure
+
     print(i)
     j = 0
     while j < longueur:                                                  #loop sur le nombre de temps
