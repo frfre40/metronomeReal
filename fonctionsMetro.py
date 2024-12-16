@@ -20,12 +20,12 @@ def accentDeBase(nombre):
             liste.append(0)
     return liste
 
-def patternAccent():
+def patternAccent(longueur):
 ### Cette fonction retourne une liste avec des accents au positions demandées ###
 
-    nbTemps = int(input("Nombre de temps: "))                                          #Définition du nombre de temps dans une mesure
+    nbTemps = longueur                                          #Définition du nombre de temps dans une mesure
 
-    divisions = input("Comment voulez-vous diviser la mesure (groupes de 2 et 3)?: ")  #Définition du pattern d'accents. Le somme doit ABSOLUMENT être le nombre de temps
+    divisions = input("Comment voulez-vous diviser la mesure (groupes de 1, 2 ou 3)?: ")  #Définition du pattern d'accents. Le somme doit ABSOLUMENT être le nombre de temps
     listeDivisions = divisions.split(',')                                              #Séparation des accents dans un liste
     for i in range(len(listeDivisions)):
         listeDivisions[i] = int(listeDivisions[i])                                     #Conversion des élément de listeDivisions de string à int
