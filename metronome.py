@@ -20,12 +20,10 @@ accents = fM.patternAccent(longueur)                                     #Modifi
 mesures = 2
 i = 0
 
-print(accents)
+print(f'Pattern: {accents}')
 
-
-while i < 5:                                                       #loop sur le nombre de mesure
-
-    print(i)
+print("Appuyez sur CTRL + C pour arrêter le métronome")
+while True:                                                             #loop sur le nombre de mesure
     j = 0
     while j < longueur:                                                  #loop sur le nombre de temps
         if accents[j] == 1:
