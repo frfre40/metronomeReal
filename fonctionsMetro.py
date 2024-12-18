@@ -2,7 +2,7 @@ import numpy as np
 
 """ Fonctions de base """
 def temps(tempo, subdivision):
-### Cette fonction l'intervalle de temps entre chaque note ###
+### Cette fonction calcule l'intervalle de temps entre chaque note ###
 
     n = np.log2(subdivision)
     tempo = 2**(n - 2) * tempo
