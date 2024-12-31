@@ -61,3 +61,19 @@ class ClickTrack:
     def play(self):
         for measure in self.measures:
             measure.play()
+
+    def ecrire(self, nomTrack):
+        fichier = open(nomTrack, "x")
+        i = 1
+        while i == 1:
+            len = input("Nombre de temps dans la mesure: ")
+            sub = input("Subdivisions: ")
+            nb = int(input("Nombre désiré de mesures de ce type: "))
+            j = 0
+            while j < nb:
+                fichier.write(f"{len}/{sub}" + ",")
+                j += 1
+            
+            i = int(input("Voulez-vous continuer à entrer des mesures? (oui = 1, non = 0): "))
+
+        fichier.close()
