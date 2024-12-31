@@ -2,7 +2,7 @@ import pygame
 import time
 import fonctionsMetro as fM
 
-pathMetro ='/Users/frederikstrach/Documents/baccPhysiqueAutomne2024/Metronome/metronomeReal/metronome.wav'
+pathMetro ='./metronome.wav'
 pygame.mixer.init()                                                      #initialisation
 sound = pygame.mixer.Sound(pathMetro)
 
