@@ -28,7 +28,7 @@ class Measure:
             self.accents = accents
         elif isinstance(accents, str):
             self.accents = [int(i) for i in list(accents)]
-        elif accents == None:
+        elif accents is None:
             self.accents = [3]
             if self.len > 1:
                 self.accents += [1 for _ in range(self.len - 1)]
