@@ -3,14 +3,39 @@ Classes pour faire des clicktracks
 """
 from typing import Self
 
-import classeMetronome as metro
+import numpy as np
+import pygame as pg
+from time import sleep
 
 
+# Il reste surtout à compléter les docstrings
+# Les accents peuvent être sous la forme '21121' ou [2, 1, 1, 2, 1] ou le chiffre représente le niveua de l'accent
+# 0 = pas de son, 1 = son nornal, 2 = son accentué, 3 = son encore plus accentué (par défault sur le premier temps)
+
+# Ça pourrait être cool de mettre des sons différents pour les différents types d'accents.
 class Measure:
-    def __init__(self, tempo: int | float=60, time_signature='4/4', accents='4'):
+    def __init__(self,
+                 tempo: int | float = 60,
+                 time_signature: str = '4/4',
+                 accents: str | list | None = None
+                 ):
         self.bpm = tempo
-        self.len, self.sub = time_signature.split('/')
-        self.accents = accents
+        self.time_signature = time_signature
+        self.len, self.sub = self.time_signature.split('/')
+        self.len, self.sub = int(self.len), int(self.sub)
+
+        if isinstance(accents, list):
+            self.accents = accents
+        elif isinstance(accents, str):
+            self.accents = [int(i) for i in list(accents)]
+        elif accents == None:
+            self.accents = [3]
+            if self.len > 1:
+                self.accents += [1 for _ in range(self.len - 1)]
+        else:
+            raise TypeError('accents must be a string, a list or a None object')
+        if len(self.accents) != self.len:
+            raise ValueError('The accents do not match the lenght of the measure')
     
     def __add__(self, other: Self | 'ClickTrack'):
         measure = [self]
@@ -28,10 +53,20 @@ class Measure:
         return ClickTrack([self] * rep)
     
     def __repr__(self):
-        return f'Measure({self.len}/{self.sub}, {self.bpm} bpm)'
+        return f'Measure({self.time_signature}, {self.bpm} bpm)'
     
     def play(self):
-        pass
+        pathClick ='./metronome.wav'
+        pg.mixer.init()
+        click = pg.mixer.Sound(pathClick)
+
+        dt = 60/(2**(np.log2(self.sub) - 2) * self.bpm)
+
+        volumes = [0, 0.2, 0.7, 1]
+        for i in self.accents:
+            click.set_volume(volumes[i])
+            click.play()
+            sleep(dt)
 
 
 class ClickTrack:
